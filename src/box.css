@@ -1,0 +1,53 @@
+#box {
+    flex-direction: column;
+    position: absolute;
+    opacity: 0;
+    top: 15px;
+    right: 75px;
+    padding: 25px;
+    width: 250px;
+    /* height: 150px; */
+    background-color: black;
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    border-radius: 25px;
+}
+
+#box #title {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#box #message {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+
+@keyframes flyFromLeft {
+    0% {
+        transform: translateX(100%);
+        opacity: 0%;
+    }
+
+    75% {
+        opacity: 100%;
+    }
+
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes flyAwayToLeft {
+    0% {
+        transform: translateX(0%);
+        opacity: 100%;
+    }
+
+    100% {
+        transform: translateX(100%);
+        opacity: 0%;
+    }
+}

@@ -1,7 +1,6 @@
-import { app, BrowserWindow, ipcMain, ipcRenderer, Menu, Tray, Request } from "electron";
+import { app, BrowserWindow, Menu, Tray } from "electron";
 import * as path from 'path';
 import { createServer } from "http";
-import { URL } from "url";
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
@@ -16,6 +15,7 @@ const createWindow = (): void => {
     height: 600,
     frame: false,
     transparent: true,
+    fullscreen: true,
     skipTaskbar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -68,7 +68,7 @@ const createWindow = (): void => {
         res.end();
       }
     }
-  }).listen(3000, () => { 
+  }).listen(3000, "0.0.0.0", () => { 
     console.log("Server started on port 3000");  
   });
 
