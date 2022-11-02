@@ -15,5 +15,5 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 contextBridge.exposeInMainWorld("electron", {
-  handelUrl: (url: (event: Electron.IpcRendererEvent, ...args: any[]) => void) => ipcRenderer.on("api-url", url),
+  handelUrl: (url: any) => ipcRenderer.on("api-url", url),
 });

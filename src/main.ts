@@ -43,42 +43,30 @@ const createWindow = (): void => {
   const tray = new Tray(path.join(__dirname, '../src/assets/icon.png'));
   tray.setToolTip('This is my application.');
   const context = Menu.buildFromTemplate([
-    { label: 'close', type: 'normal' },
-    { label: 'test', type: 'normal' },
+    { label: 'Quit', type: 'normal', click: () => app.quit() },
+    {
+      label: 'test', type: 'normal', click: () => {
+        mainWindow.webContents.send("api-url", "/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box");
+      }
+    },
+    { label: 'Hide/Show', type: 'normal', click: () => mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show() },
   ])
   tray.setContextMenu(context)
   tray.setToolTip('This is my application.')
 
-  tray.on('click', () => {
-    mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()
-  })
-  
-  //close app if context close is clicked
-  context.items[0].click = () => {
-    app.quit();
-  }
-  
-  //test
-  context.items[1].click = () => {
-    console.log('test')
-  }
-
-  const Url = URL;
-
   createServer((req, res) => {
     if (req.url !== '/favicon.ico') {
       if (req.url === "/test") {
-        mainWindow.webContents.send("api-url", "test");
+        mainWindow.webContents.send("api-url", "/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box");
         res.write("this was a test");
         res.end();
         console.log("test");
       
       } else {
         mainWindow.webContents.send("api-url", req.url);
-        res.write("you wrote " + req.url);
+        res.write("you wrote: " + req.url);
         res.end();
       }
-      console.log();
     }
   }).listen(3000, () => { 
     console.log("Server started on port 3000");  

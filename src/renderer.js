@@ -1,19 +1,19 @@
-const apiText = document.getElementById("apiText");
-let message = "Null";
-let title = "Null";
-let type = "Null";
-let urls;
+const mes = document.getElementById("message");
+const tit = document.getElementById("title");
+const box = document.getElementById("box");
 
-window.electron.handelUrl((_event, x) => {
 
-    x = x.slice(1);
+window.electron.handelUrl((_event, url) => {
+    let message = "Null";
+    let title = "Null";
+    let type = "Null";
+    let urls;
 
-    urls = x.split("&");
+    url = url.slice(1);
 
-    console.log(urls);
+    urls = url.split("&");
 
     urls.forEach(url => {
-        url = url.replace(/%20/g, " ");
         if (url.slice(0, 2) == "m=") {
             message = url.slice(2);
         }
@@ -25,5 +25,14 @@ window.electron.handelUrl((_event, x) => {
         }
     });
 
-    apiText.innerHTML = "Message: " + message + " Title: " + title + " Type: " + type;	
+        boxNotify(message, title);
 });
+
+function boxNotify(message, title) {
+    tit.innerHTML = title;
+    mes.innerHTML = message;
+}
+
+
+
+    
