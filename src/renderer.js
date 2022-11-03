@@ -28,20 +28,21 @@ window.electron.handelUrl((_event, url) => {
             type = url.slice(2);
         }
     });
-    
 
-    switch (type) {
-        case "box":
-            boxNotify(message, title);
-            break;
+    if (message != "Null") {
+        switch (type) {
+            case "box":
+                boxNotify(message, title);
+                break;
         
-        case "map":
+            case "map":
             
-            break;
+                break;
     
-        default:
-            boxNotify(message, title);
-            break;
+            default:
+                boxNotify(message, title);
+                break;
+        }
     }
 });
 
