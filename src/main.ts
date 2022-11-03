@@ -15,7 +15,6 @@ const createWindow = (): void => {
     height: 600,
     frame: false,
     transparent: true,
-    fullscreen: true,
     skipTaskbar: true,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
@@ -23,6 +22,8 @@ const createWindow = (): void => {
     },
     alwaysOnTop: true,
   });
+
+  app.dock.hide();
 
   // and load the index.html of the app.
   mainWindow.loadFile(path.join(__dirname, '../src/index.html'));
