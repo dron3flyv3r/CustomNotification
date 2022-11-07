@@ -1,0 +1,12 @@
+* {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+title {
+  display: none;
+}
+
+/*# sourceMappingURL=index.css.map */

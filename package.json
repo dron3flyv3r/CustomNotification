@@ -5,7 +5,7 @@
   "description": "My Electron application description",
   "main": "dist/main.js",
   "scripts": {
-    "start": "tsc && electron-forge start",
+    "start": "tsc && sass src:static && electron-forge start",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",

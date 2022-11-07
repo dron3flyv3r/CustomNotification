@@ -18,19 +18,18 @@ window.electron.handelUrl((_event, url) => {
 
     urls.forEach(url => {
         if (url.slice(0, 2) == "m=") {
-            message = url.slice(2);
-            message = message.replace(/%20/g, " ");
+            message = decodeURIComponent(url.slice(2));
         }
         if (url.slice(0, 2) == "h=") {
-            title = url.slice(2);
+            title = decodeURIComponent(url.slice(2));
         } 
         if (url.slice(0, 2) == "t=") {
-            type = url.slice(2);
+            type = decodeURIComponent(url.slice(2));
         }
     });
 
-    if (message != "Null") {
-        switch (type) {
+    if (message != "Null" && !isNotified) {
+        switch (type.toLocaleLowerCase()) {
             case "box":
                 boxNotify(message, title);
                 break;
@@ -50,9 +49,9 @@ function boxNotify(message, title) {
     isNotified = true;
     tit.innerHTML = title;
     mes.innerHTML = message;
-    box.style.opacity = "1";
     box.style.right = "75px";
-
+    
+    new Audio("../src/assets/notification.mp3").play();
     box.style.animation = "flyFromLeft 0.5s ease-in-out";
 
     setTimeout(() => {
@@ -63,8 +62,8 @@ function boxNotify(message, title) {
         box.style.animation = "flyAwayToLeft 0.5s ease-in-out";
         setTimeout(() => {
             box.style.opacity = "0";
-            isNotified = false;
-        }, 480);
+        }, 350);
+        isNotified = false;
     }, 4500);
 }
 
