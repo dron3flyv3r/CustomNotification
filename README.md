@@ -10,7 +10,7 @@ I made this so I could get notifications from small scripts or automations I mad
 ## Setup
 
 1. Get api key from [geoapify](geoapify.com) and add it to `config.json` in the static folder
-2. download the [latest release]()
+2. download the [latest release](https://github.com/dron3flyv3r/CustomNotification/releases/tag/v1.0.0-beta.1)
 2. Run `npm install` to install dependencies
 3. Start the server with `npm start`
 
