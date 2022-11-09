@@ -14,8 +14,6 @@ I made this so I could get notifications from small scripts or automations I mad
 2. Run `npm install` to install dependencies
 3. Start the server with `npm start`
 
-## To auto start on boot
-
 ## Basic use
 ### For Python (pip install coming soon)
 To call the api, you need to send a post request to the server with the following parameters:
