@@ -1,6 +1,6 @@
 {
     "API_KEY": {
         "type":"text",
-        "data": "INSERT_API_KEY_HERE"
+        "data": "SET_API_KEY_HERE"
     }
 }
