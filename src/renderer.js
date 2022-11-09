@@ -12,13 +12,13 @@ const img_tit = document.getElementById("img_title");
 const img_mes = document.getElementById("img_message");
 const img_url = document.getElementById("img_url");
 
-const API_KEY = "API_KEY";
+//const config = require("config.json");
+
+let API_KEY;
 
 let isNotified = false;
 
-let missingNotification = []; 
-
-window.electron.handelUrl((_event, url) => {
+window.electron.handelUrl((_event, config) => {
 
     let message = "Null";
     let title = "Notification";
@@ -28,9 +28,15 @@ window.electron.handelUrl((_event, url) => {
     let lot = 0.00;
     let urls;
 
-    url = url.slice(1);
+    urls = config.url;
 
-    urls = url.split("&");
+    set = config.set;
+
+    API_KEY = config.set.API_KEY.data;
+
+    urls = urls.slice(1);
+
+    urls = urls.split("&");
 
     urls.forEach(url => {
         if (url.slice(0, 2) == "m=") {

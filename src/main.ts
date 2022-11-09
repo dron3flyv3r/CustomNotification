@@ -1,6 +1,8 @@
-import { app, BrowserWindow, ipcMain, Menu, Tray } from "electron";
+import { app, BrowserWindow, Config, Menu, Tray, ipcMain } from 'electron';
 import * as path from "path";
 import { createServer } from "http";
+
+export let config: Config = require("../static/config.json");
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require("electron-squirrel-startup")) {
@@ -9,6 +11,23 @@ if (require("electron-squirrel-startup")) {
 }
 
 app.disableHardwareAcceleration();
+
+function updateConfig(_event, data) {
+  config = data;
+}
+
+const createSettings = (): void => {
+  const setWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+    webPreferences: {
+      preload: path.join(__dirname, "settingsLoad.js"),
+    },
+  });
+
+  setWindow.loadFile(path.join(__dirname, "../static/settings.html"));
+  setWindow.setMenu(null);
+};
 
 const createWindow = (): void => {
   // Create the browser window.
@@ -53,21 +72,21 @@ const createWindow = (): void => {
       label: "Box Test",
       type: "normal",
       click: () => {
-        mainWindow.webContents.send("api-url", "/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box");
+        mainWindow.webContents.send("api-url", {"url":"/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box", "set":config});
       },
     },
     {
       label: "Map Test",
       type: "normal",
       click: () => {
-        mainWindow.webContents.send("api-url", "/m=hejsafra%20dette%20er%20en%20test&20map%20besked&h=test%20map&t=map&la=55.6412763&lo=12.0595312");
+        mainWindow.webContents.send("api-url", {"url":"/m=hejsafra%20dette%20er%20en%20test&20map%20besked&h=test%20map&t=map&la=55.6412763&lo=12.0595312", "set":config});
       },
     },
     {
       label: "Img Test",
       type: "normal",
       click: () => {
-        mainWindow.webContents.send("api-url", "/m=hejsafra%20dette%20er%20en%20test%20fra%20image%20besked&h=test%20image&t=img&i=http://store-images.s-microsoft.com/image/apps.28293.14416131676512756.84314783-1c86-4403-b991-2e1da8525703.0dbed0c5-75f5-4c15-9b43-ea96f1670b4f");
+        mainWindow.webContents.send("api-url", {"url": "/m=hejsafra%20dette%20er%20en%20test%20fra%20image%20besked&h=test%20image&t=img&i=http://store-images.s-microsoft.com/image/apps.28293.14416131676512756.84314783-1c86-4403-b991-2e1da8525703.0dbed0c5-75f5-4c15-9b43-ea96f1670b4f", "set":config});
       },
     },
     { label: "Hide/Show", type: "normal", click: () => (mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()) },
@@ -78,11 +97,11 @@ const createWindow = (): void => {
   createServer((req, res) => {
     if (req.url !== "/favicon.ico") {
       if (req.url === "/test") {
-        mainWindow.webContents.send("api-url", "/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box");
+        mainWindow.webContents.send("api-url", {"url":"/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box", "set": config});
         res.write("this was a test");
         res.end();
       } else {
-        mainWindow.webContents.send("api-url", req.url);
+        mainWindow.webContents.send("api-url", {"url":req.url, "set": config});
         res.write("you wrote: " + req.url);
         res.end();
       }
@@ -96,6 +115,7 @@ const createWindow = (): void => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
+  //ipcMain.on("update_setting", updateConfig)
   createWindow();
 });
 
