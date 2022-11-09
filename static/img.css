@@ -1,29 +1,29 @@
-#map {
+#img {
   flex-direction: column;
   opacity: 0;
   top: 15px;
   right: 75px;
   padding: 25px;
   width: 250px;
-  background-color: rgb(51, 0, 132);
+  background-color: rgb(92, 132, 0);
   color: white;
   font-size: 20px;
   border-radius: 25px;
 }
-#map #map_title {
+#img #img_title {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
 }
-#map #map_message {
+#img #img_message {
   font-size: 20px;
   margin-bottom: 10px;
 }
-#map #map_map {
+#img #img_url {
   width: 250px;
   align-items: center;
   border-radius: 25px;
   margin: auto 0;
 }
 
-/*# sourceMappingURL=map.css.map */
+/*# sourceMappingURL=img.css.map */

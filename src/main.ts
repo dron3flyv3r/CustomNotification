@@ -8,6 +8,8 @@ if (require("electron-squirrel-startup")) {
   app.quit();
 }
 
+app.disableHardwareAcceleration();
+
 const createWindow = (): void => {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -48,10 +50,24 @@ const createWindow = (): void => {
   const context = Menu.buildFromTemplate([
     { label: "Quit", type: "normal", click: () => app.quit() },
     {
-      label: "test",
+      label: "Box Test",
       type: "normal",
       click: () => {
         mainWindow.webContents.send("api-url", "/m=hejsa%20dette%20er%20en%20test%20besked&h=test1&t=box");
+      },
+    },
+    {
+      label: "Map Test",
+      type: "normal",
+      click: () => {
+        mainWindow.webContents.send("api-url", "/m=hejsafra%20dette%20er%20en%20test&20map%20besked&h=test%20map&t=map&la=55.6412763&lo=12.0595312");
+      },
+    },
+    {
+      label: "Img Test",
+      type: "normal",
+      click: () => {
+        mainWindow.webContents.send("api-url", "/m=hejsafra%20dette%20er%20en%20test%20fra%20image%20besked&h=test%20image&t=img&i=http://store-images.s-microsoft.com/image/apps.28293.14416131676512756.84314783-1c86-4403-b991-2e1da8525703.0dbed0c5-75f5-4c15-9b43-ea96f1670b4f");
       },
     },
     { label: "Hide/Show", type: "normal", click: () => (mainWindow.isVisible() ? mainWindow.hide() : mainWindow.show()) },

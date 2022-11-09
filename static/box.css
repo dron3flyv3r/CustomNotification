@@ -1,6 +1,5 @@
 #box {
   flex-direction: column;
-  position: absolute;
   opacity: 0;
   top: 15px;
   right: 75px;
@@ -11,12 +10,12 @@
   font-size: 20px;
   border-radius: 25px;
 }
-#box #title {
+#box #box_title {
   font-size: 30px;
   font-weight: bold;
   margin-bottom: 10px;
 }
-#box #message {
+#box #box_message {
   font-size: 20px;
   margin-bottom: 10px;
 }
