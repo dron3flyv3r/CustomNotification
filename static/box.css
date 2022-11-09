@@ -1,5 +1,6 @@
 #box {
   flex-direction: column;
+  position: absolute;
   opacity: 0;
   top: 15px;
   right: 75px;

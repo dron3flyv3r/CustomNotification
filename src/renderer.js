@@ -12,7 +12,7 @@ const img_tit = document.getElementById("img_title");
 const img_mes = document.getElementById("img_message");
 const img_url = document.getElementById("img_url");
 
-const API_KEY = "91204a35ce724556ad342dafc0fb12e6";
+const API_KEY = "API_KEY";
 
 let isNotified = false;
 
