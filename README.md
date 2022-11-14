@@ -6,16 +6,34 @@ This is a simple plugin that allows you to send custom notifications to your com
 
 I made this so I could get notifications from small scripts or automations I made, and I thought it would be nice to share it with you guys. I hope you enjoy it. If you have any questions, feel free to ask me. I will try to answer as soon as possible. If you have any suggestions, feel free to make a pull request. I will try to review it as soon as possible. 
 
+# Installation
+## Requirements
+- [Typescript](https://www.typescriptlang.org/) (v4.3.5 or higher)
+- [Node.js](https://nodejs.org/en/) (v14.17.0 or higher)
+- [NPM](https://www.npmjs.com/) (v6.14.13 or higher)
+- [electron-forch](https://www.npmjs.com/package/electron-forge) (v6.0.0-beta.57 or higher)
+- [SASS](https://sass-lang.com/) (v1.32.13 or higher)
+
 
 ## Setup
-
-1. Get api key from [geoapify](https://geoapify.com) and add it to `config.json` in the static folder
+1. Get api key from [geoapify](geoapify.com) and add it to `config.json` in the static folder
 2. download the [latest release](https://github.com/dron3flyv3r/CustomNotification/releases/tag/v1.0.0-beta.1)
 2. Run `npm install` to install dependencies
 3. Start the server with `npm start`
 
-## Basic use
-### For Python (pip install coming soon)
+
+## how it looks
+### Box notification on Windows 11:
+![Box Notification](https://kasperlarsen.tech/MyFiles/BoxNotification.gif)
+
+###Map notification on Windows 11:
+![Map Notification](https://kasperlarsen.tech/MyFiles/MapNotification.gif)
+
+### Image notification on Windows 11:
+![Image Notification](https://kasperlarsen.tech/MyFiles/ImgNotification.gif)
+
+# Basic use
+## For Python (pip install coming soon)
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -24,10 +42,10 @@ To call the api, you need to send a post request to the server with the followin
 Here is an example of how to do this in python:
 ```
 import requests
-requests.get("http://localhost:3000/m=Hallo%20this%20is%20a%20test&h=Test&t=box")
+requests.post("http://localhost:3000/m=Hallo%20this%20is%20a%20test&h=Test&t=box")
 ```
 
-### For Javascript
+## For Javascript
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -38,7 +56,7 @@ Here is an example of how to do this in javascript:
 fetch("http://localhost:3000/m=Hallo%20this%20is%20a%20test&h=Test&t=box")
 ```
 
-### For Java
+## For Java
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -46,20 +64,20 @@ To call the api, you need to send a post request to the server with the followin
 ```
 URL url = new URL("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box");
 HttpURLConnection con = (HttpURLConnection) url.openConnection();
-con.setRequestMethod("GET");
+con.setRequestMethod("POST");
 ```
 
-### For C#
+## For C#
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
 - &t=TYPE
 ```
 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box");
-request.Method = "GET";
+request.Method = "POST";
 ```
 
-### For C++
+## For C++
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -82,7 +100,7 @@ int main() {
 }
 ```
 
-### For PHP
+## For PHP
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -99,7 +117,7 @@ To call the api, you need to send a post request to the server with the followin
 ?>
 ```
 
-### For Rust
+## For Rust
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -109,12 +127,12 @@ use reqwest::blocking::Client;
 
 fn main() {
     let client = Client::new();
-    let res = client.get("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box").send().unwrap();
+    let res = client.post("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box").send().unwrap();
     println!("{:?}", res);
 }
 ```
 
-### For Go
+## For Go
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -128,7 +146,7 @@ import (
 )
 
 func main() {
-    resp, err := http.Get("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box")
+    resp, err := http.Post("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box")
     if err != nil {
         panic(err)
     }
@@ -137,7 +155,7 @@ func main() {
 }
 ```
 
-### For Ruby
+## For Ruby
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -146,14 +164,14 @@ To call the api, you need to send a post request to the server with the followin
 require 'net/http'
 
 url = URI.parse("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box")
-req = Net::HTTP::Get.new(url.to_s)
+req = Net::HTTP::Post.new(url.to_s)
 res = Net::HTTP.start(url.host, url.port) {|http|
   http.request(req)
 }
 puts res.body
 ```
 
-### For Swift
+## For Swift
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -175,7 +193,7 @@ let task = URLSession.shared.dataTask(with: url) { data, response, error in
 task.resume()
 ```
 
-### For Kotlin
+## For Kotlin
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -189,9 +207,9 @@ import java.net.URL
 fun main(args: Array<String>) {
     val url = URL("http://localhost:3000/m=Yallo%20this%20is%20a%20test&h=Test&t=box")
     val con = url.openConnection() as HttpURLConnection
-    con.requestMethod = "GET"
+    con.requestMethod = "POST"
     val responseCode = con.responseCode
-    println("GET Response Code :: $responseCode")
+    println("POST Response Code :: $responseCode")
     if (responseCode == HttpURLConnection.HTTP_OK) { // success
         val `in` = BufferedReader(InputStreamReader(con.inputStream))
         var inputLine: String?
@@ -203,12 +221,12 @@ fun main(args: Array<String>) {
         // print result
         println(response.toString())
     } else {
-        println("GET request not worked")
+        println("POST request not worked")
     }
 }
 ```
 
-### For Dart
+## For Dart
 To call the api, you need to send a post request to the server with the following parameters:
 - &m=MESSAGE
 - &h=TITLE (optional)
@@ -229,8 +247,28 @@ void main() async {
   httpClient.close();
 }
 ```
+# Setup for Home Assistant
+To setup the notification service for Home Assistant, you need to add the following to your configuration.yaml file:
+```
+rest_command:
+    notify_box:
+        url: "http://HOST_IP:3000/m={{mes}}&h={{tit}}&t=box"
+        
+    notify_img:
+        url: "http://HOST_IP:3000/m={{mes}}&h={{tit}}&i={{img}}&t=img"
+        
+    notify_map:
+        url: "http://HOST_IP:3000/m={{mes}}&h={{tit}}&la={{lat}}&lo={{lon}}&t=map"
+```
+## to use the notification service, you need to call the following:
+```
+service: rest_command.notify_box
+data:
+    mes: MESSAGE
+    tit: TITLE
+```
 
-# Some advanced stuff
+# Some advanced stuff you can do
 ## Customization
 There are a few other types of notifications you can send: (default is box)
 - &t=box
@@ -238,7 +276,7 @@ There are a few other types of notifications you can send: (default is box)
 - &t=map
 
 ### Box
-This is the default notification type. It is a simple box with a title and a message.
+This is the default notification type. It is a simple box with a title and a message. 
 
 ### Img
 This notification type is a box with a title and a message, but it also has an image. To use this type, you need to add the following parameter: You can also use a gif as an image.
@@ -249,23 +287,24 @@ This notification type is a box with a title and a message, but it also has a ma
 - &la=LATITUDE (Use a dot for decimals)
 - &lo=LONGITUDE (Use a dot for decimals)
 
-## Some examples in Javascript (Node.js)
-### Box
+# Some advanced examples in Javascript (Node.js)
+### Box notification
 ```
 fetch("http://localhost:3000/m=Hallo%20this%20is%20a%20test&h=Test&t=box")
 ```
 
-### Img
+### Img notification
 ```
 fetch("http://localhost:3000/m=Hallo%20this%20is%20a%20test&h=Test&t=img&i=https://media.tenor.com/VFFJ8Ei3C2IAAAAd/rickroll-rick.gif")
 ```
 
-### Map
+### Map notification
 ```
 fetch("http://localhost:3000/m=Hallo%20this%20is%20a%20test&h=Test&t=map&la=52.370216&lo=4.895168")
 ```
 
 # For the future
+- [x] Added support for Home Assistant
 - [ ] Add more notification types
 - [ ] Add a customization options
 - [ ] Add more languages
