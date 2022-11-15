@@ -26,7 +26,7 @@ I made this so I could get notifications from small scripts or automations I mad
 ### Box notification on Windows 11:
 ![Box Notification](https://kasperlarsen.tech/MyFiles/BoxNotification.gif)
 
-###Map notification on Windows 11:
+### Map notification on Windows 11:
 ![Map Notification](https://kasperlarsen.tech/MyFiles/MapNotification.gif)
 
 ### Image notification on Windows 11:
