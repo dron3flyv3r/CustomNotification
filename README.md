@@ -24,13 +24,13 @@ I made this so I could get notifications from small scripts or automations I mad
 
 ## how it looks
 ### Box notification on Windows 11:
-![Box Notification](https://kasperlarsen.tech/MyFiles/BoxNotification.gif)
+![Box Notification](https://files.kasperlarsen.tech/BoxNotification.gif)
 
 ### Map notification on Windows 11:
-![Map Notification](https://kasperlarsen.tech/MyFiles/MapNotification.gif)
+![Map Notification](https://files.kasperlarsen.tech/MapNotification.gif)
 
 ### Image notification on Windows 11:
-![Image Notification](https://kasperlarsen.tech/MyFiles/ImgNotification.gif)
+![Image Notification](https://files.kasperlarsen.tech/ImgNotification.gif)
 
 # Basic use
 ## For Python (pip install coming soon)
